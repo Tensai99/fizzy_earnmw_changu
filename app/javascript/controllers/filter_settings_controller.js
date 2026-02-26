@@ -81,6 +81,6 @@ export default class extends Controller {
   }
 
   #showNoFilteringUrl() {
-    Turbo.visit(this.noFilteringUrlValue, { frame: "cards_container", action: "advance" })
+    Turbo.visit(this.noFilteringUrlValue, { action: "replace" })
   }
 }

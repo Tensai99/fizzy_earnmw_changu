@@ -1,6 +1,6 @@
 module FiltersHelper
   def filter_chip_tag(text, params)
-    link_to cards_path(params), class: "btn txt-x-small btn--remove fill-selected flex-inline" do
+    link_to cards_path(params), class: "btn txt-x-small btn--remove fill-selected flex-inline", data: { turbo_action: "replace" } do
       concat tag.span(text)
       concat icon_tag("close")
     end

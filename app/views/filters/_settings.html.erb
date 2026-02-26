@@ -19,7 +19,7 @@
             turbo_frame: "cards_container",
             filter_settings_target: "form",
             action: "turbo:submit-end->filter-settings#resetIfNoFiltering",
-            turbo_action: "advance" } do |form| %>
+            turbo_action: "replace" } do |form| %>
         <%= hidden_field_tag :expand_all, true, disabled: !user_filtering.expanded?, data: { toggle_enable_target: "element" } %>
 
         <%= yield form if block_given? %>
