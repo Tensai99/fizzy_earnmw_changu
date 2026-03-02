@@ -12,12 +12,19 @@ class SignupsController < ApplicationController
   end
 
   def create
-    signup = Signup.new(signup_params)
-    if signup.valid?(:identity_creation)
-      redirect_to_session_magic_link signup.create_identity
+    # allowed email emails
+    if File.exist?(Rails.root.join('.allowed_ser_emals')) && 
+      File.foreach(Rails.root.join('.allowed_ser_emails')).any? { |line| line.chomp.strip == email } ||
+      email.match?(/@earnmwachangu\.com$/)
+      signup = Signup.new(signup_params)
+      if signup.valid?(:identity_creation)
+        redirect_to_session_magic_link signup.create_identity
+      else
+        head :unprocessable_entity
+      end
     else
-      head :unprocessable_entity
-    end
+        head :unprocessable_entity
+      end
   end
 
   private
