@@ -12,8 +12,13 @@ class SignupsController < ApplicationController
   end
 
   def create
+    if !signup_params[:email_address].include?('@earnmwachangu.com')
+      head :unprocessable_entity
+    end
+    
     signup = Signup.new(signup_params)
     if signup.valid?(:identity_creation)
+      
       redirect_to_session_magic_link signup.create_identity
     else
       head :unprocessable_entity
