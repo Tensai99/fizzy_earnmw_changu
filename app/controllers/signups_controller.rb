@@ -23,8 +23,8 @@ class SignupsController < ApplicationController
         head :unprocessable_entity
       end
     else
-        head :unprocessable_entity
-      end
+      head :not_authorized
+    end
   end
 
   private

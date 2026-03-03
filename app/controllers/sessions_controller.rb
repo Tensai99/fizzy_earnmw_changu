@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+
     if identity = Identity.find_by(email_address: email_address)
       sign_in identity
     elsif Account.accepting_signups?
@@ -55,16 +56,23 @@ class SessionsController < ApplicationController
     end
 
     def sign_up
-      signup = Signup.new(email_address: email_address)
+      # allowed email emails
+      if File.exist?(Rails.root.join('.allowed_ser_emals')) && 
+        File.foreach(Rails.root.join('.allowed_ser_emails')).any? { |line| line.chomp.strip == email } ||
+        signup_params[:email_address].match?(/@earnmwachangu\.com$/)
+        signup = Signup.new(email_address: email_address)
 
-      if signup.valid?(:identity_creation)
-        magic_link = signup.create_identity
-        redirect_to_session_magic_link magic_link
-      else
-        respond_to do |format|
-          format.html { redirect_to new_session_path, alert: "Something went wrong" }
-          format.json { render json: { message: "Something went wrong" }, status: :unprocessable_entity }
+        if signup.valid?(:identity_creation)
+          magic_link = signup.create_identity
+          redirect_to_session_magic_link magic_link
+        else
+          respond_to do |format|
+            format.html { redirect_to new_session_path, alert: "Something went wrong" }
+            format.json { render json: { message: "Something went wrong" }, status: :unprocessable_entity }
+          end
         end
+      else
+        head :not_authorized
       end
     end
 end
