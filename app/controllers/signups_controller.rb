@@ -13,8 +13,8 @@ class SignupsController < ApplicationController
 
   def create
     # allowed email emails
-    if File.exist?(Rails.root.join('.allowed_ser_emals')) && 
-      File.foreach(Rails.root.join('.allowed_ser_emails')).any? { |line| line.chomp.strip == email } ||
+    if File.exist?(Rails.root.join('.allowed_user_emals')) && 
+      File.foreach(Rails.root.join('.allowed_user_emails')).any? { |line| line.chomp.strip == email } ||
       signup_params[:email_address].match?(/@welloverse\.solutions$/)
       signup = Signup.new(signup_params)
       if signup.valid?(:identity_creation)
