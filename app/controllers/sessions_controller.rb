@@ -57,9 +57,9 @@ class SessionsController < ApplicationController
 
     def sign_up
       # allowed email emails
-      if File.exist?(Rails.root.join('.allowed_ser_emals')) && 
-        File.foreach(Rails.root.join('.allowed_ser_emails')).any? { |line| line.chomp.strip == email } ||
-        signup_params[:email_address].match?(/@earnmwachangu\.com$/)
+      if File.exist?(Rails.root.join('.allowed_user_emals')) && 
+        File.foreach(Rails.root.join('.allowed_user_emails')).any? { |line| line.chomp.strip == email } ||
+        signup_params[:email_address].match?(/@welloverse\.solutions$/)
         signup = Signup.new(email_address: email_address)
 
         if signup.valid?(:identity_creation)

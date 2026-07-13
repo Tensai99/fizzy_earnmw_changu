@@ -8,7 +8,7 @@ image: fizzy
 # Where to deploy fizzy
 servers:
   web:
-    - fizzy.earnmwachangu.com  # Set your server name here
+    - fizzy.welloverse.solutions # Set your server name here
 
 # How you connect to your server
 ssh:
@@ -17,7 +17,7 @@ ssh:
 # Automatic SSL
 proxy:
   ssl: true                # Set this to false if you *don't* want SSL
-  host: fizzy.earnmwachangu.com  # Set your server name here to use automatic SSL
+  host: fizzy.welloverse.solutions # Set your server name here to use automatic SSL
 
 # Your application configuration (secrets come from .kamal/secrets).
 env:
@@ -28,7 +28,7 @@ env:
     - SMTP_USERNAME
     - SMTP_PASSWORD
   clear:
-    BASE_URL: https://fizzy.earnmwachangu.com # The public URL of your Fizzy instance
+    BASE_URL: https://fizzy.welloverse.solutions# The public URL of your Fizzy instance
     MAILER_FROM_ADDRESS: no-reply@earnmwachangu.com # The email "from" address that Fizzy sends email from
     SMTP_ADDRESS: smtp.zeptomail.com # The SMTP server you'll use to send email
     MULTI_TENANT: true # Set to true to allow multiple accounts to sign up
@@ -39,7 +39,7 @@ env:
 
 # Use a local registry to deploy
 registry:
-  server: registry.earnmwachangu.com
+  server: registry.welloverse.solutions
   username: registry
   password: registry
     - KAMAL_REGISTRY_PASSWORD
